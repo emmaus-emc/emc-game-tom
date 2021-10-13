@@ -83,6 +83,9 @@ var verwerkBotsing = function () {
 
 };
 
+if (spelerX <0) {
+  spelerX = 0;
+}
 /**
  * Tekent spelscherm
  */
