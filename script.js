@@ -29,7 +29,12 @@ var vijandY = 100; // y-positie van vijand
  */
 var beweegAlles = function () {
   // vijand
-
+ if (vijandY < 720) {
+   vijandY = vijandY  + 5
+ } else (vijandY = 0);
+ if (vijandY = 0) {
+   vijandX = random(0,720);
+ }
   // kogel
 
   // speler
@@ -103,6 +108,7 @@ var tekenAlles = function () {
   ellipse(spelerX, spelerY, 50, 50);
   fill("white");
   ellipse(spelerX, spelerY, 20, 20);
+  
 
 
 
