@@ -20,6 +20,7 @@ var spelerY = 200; // y-positie van speler
 var vijandX = 400; // x-positie van vijand
 var vijandY = 100; // y-positie van vijand
 
+var hp = 100; // hp voor speler
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -29,7 +30,7 @@ var vijandY = 100; // y-positie van vijand
  */
 var beweegAlles = function () {
   // vijand
-vijandY=vijandY+10;
+vijandY=vijandY+5;
 
 if (vijandY > 720) {
   vijandY = 0;
@@ -83,7 +84,13 @@ if (vijandY > 720) {
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-
+if ( (spelerX-vijandX) > -50 &&
+( spelerX-vijandX) < 50 &&
+(spelerY-vijandY) > -50 &&
+(spelerY-vijandY)< 50
+) {
+  console.log('botsing');
+};
   // botsing kogel tegen vijand
 
 };
