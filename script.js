@@ -29,12 +29,12 @@ var vijandY = 100; // y-positie van vijand
  */
 var beweegAlles = function () {
   // vijand
- if (vijandY < 720) {
-   vijandY = vijandY  + 5
- } else (vijandY = 0);
- if (vijandY = 0) {
-   vijandX = random(0,720);
- }
+vijandY=vijandY+10;
+
+if (vijandY > 720) {
+  vijandY = 0;
+}
+
   // kogel
 
   // speler
@@ -88,9 +88,7 @@ var verwerkBotsing = function () {
 
 };
 
-if (spelerX <0) {
-  spelerX = 0;
-}
+
 /**
  * Tekent spelscherm
  */
