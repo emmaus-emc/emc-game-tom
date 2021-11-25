@@ -17,10 +17,17 @@ var spelStatus = SPELEN;
 var spelerX = 200; // x-positie van speler
 var spelerY = 200; // y-positie van speler
 
-var vijandX = 400; // x-positie van vijand
-var vijandY = 100; // y-positie van vijand
+var vijand1X = 400; // x-positie van vijand
+var vijand1Y = 100; // y-positie van vijand
 
-var hp = 100; // hp voor speler
+var vijand2X = 250; 
+var vijand2Y = 100;
+
+var vijand3X = 100;
+var vijand3Y = 100;
+
+var punten = 0;
+var HP = 100; // hp voor speler
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -30,10 +37,10 @@ var hp = 100; // hp voor speler
  */
 var beweegAlles = function () {
   // vijand
-vijandY=vijandY+5;
+vijand1Y=vijand1Y+5;
 
-if (vijandY > 720) {
-  vijandY = 0;
+if (vijand1Y > 720) {
+  vijand1Y = 0;
 }
 
   // kogel
@@ -84,15 +91,16 @@ if (vijandY > 720) {
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-if ( (spelerX-vijandX) > -50 &&
-( spelerX-vijandX) < 50 &&
-(spelerY-vijandY) > -50 &&
-(spelerY-vijandY)< 50
+if ( (spelerX-vijand1X) > -50 &&
+( spelerX-vijand1X) < 50 &&
+(spelerY-vijand1Y) > -50 &&
+(spelerY-vijand1Y)< 50
 ) {
-  console.log('botsing');
+  console.log('HP')
+  HP = HP - 1
 };
   // botsing kogel tegen vijand
-
+ punten= punten + 0.2;
 };
 
 
@@ -101,11 +109,17 @@ if ( (spelerX-vijandX) > -50 &&
  */
 var tekenAlles = function () {
   // achtergrond
-  fill("blue")
+  fill("gray")
   rect(0, 0, 1280, 720);
+  // inforegel
+  fill ("green");
+  textSize(32);
+  text('HP: ' +HP , 50,70);
+  text('POINTS: '  +floor(punten ), 50, 40);
+ 
   // vijand
   fill("white")
-  ellipse(vijandX, vijandY, 50, 50)
+  ellipse(vijand1X, vijand1Y, 50, 50)
   // kogel
 
   // speler
@@ -125,9 +139,8 @@ var tekenAlles = function () {
  * return true als het gameover is
  * anders return false
  */
-var checkGameOver = function () {
-  return false;
-};
+
+
 
 /* ********************************************* */
 /* setup() en draw() functies / hoofdprogramma   */
@@ -143,7 +156,7 @@ function setup() {
   createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
-  background('gray');
+  background('purple');
 }
 
 /**
@@ -156,13 +169,14 @@ function draw() {
     beweegAlles();
     verwerkBotsing();
     tekenAlles();
-    if (checkGameOver()) {
+    if (HP<= 0) {
       spelStatus = GAMEOVER;
     }
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
-
+  textSize (32);
+  text("je bent dood!!", 100, 500);
   }
 }
 
