@@ -26,6 +26,9 @@ var vijand2Y = 100;
 var vijand3X = 100;
 var vijand3Y = 100;
 
+var x =[ x>0 && x <8 ]
+
+var i = 0;
 var punten = 0;
 var HP = 100; // hp voor speler
 /* ********************************************* */
@@ -39,9 +42,11 @@ var beweegAlles = function () {
   // vijand
 vijand1Y=vijand1Y+5;
 
-if (vijand1Y > 720) {
-  vijand1Y = 0;
-}
+if (vijand1Y > 720) 
+  {vijand1Y = 0}
+
+  
+
 
   // kogel
 
@@ -91,14 +96,18 @@ if (vijand1Y > 720) {
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-if ( (spelerX-vijand1X) > -50 &&
+for (var i = 0 ; i < 8; i++ ) {
+  vijand1X = i * 200
+
+  if ( (spelerX-vijand1X) > -50 &&
 ( spelerX-vijand1X) < 50 &&
 (spelerY-vijand1Y) > -50 &&
-(spelerY-vijand1Y)< 50
+(spelerY-vijand1Y)< 50 
 ) {
   console.log('HP')
   HP = HP - 1
-};
+};}
+
   // botsing kogel tegen vijand
  punten= punten + 0.2;
 };
@@ -118,8 +127,14 @@ var tekenAlles = function () {
   text('POINTS: '  +floor(punten ), 50, 40);
  
   // vijand
+  for(var i =0; i < 8; i++){
+    vijand1X = x[i]*200;
+  
   fill("white")
   ellipse(vijand1X, vijand1Y, 50, 50)
+  }
+
+  
   // kogel
 
   // speler
