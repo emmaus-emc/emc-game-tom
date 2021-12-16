@@ -20,13 +20,9 @@ var spelerY = 200; // y-positie van speler
 var vijand1X = 400; // x-positie van vijand
 var vijand1Y = 100; // y-positie van vijand
 
-var vijand2X = 250; 
-var vijand2Y = 100;
-
-var vijand3X = 100;
-var vijand3Y = 100;
-
-var x =[ x>0 && x <8 ]
+var kogelX = 0;
+var kogelY = 0;
+var vijandXlijst =[ 100, 300, 500, 200];
 
 var i = 0;
 var punten = 0;
@@ -49,7 +45,12 @@ if (vijand1Y > 720)
 
 
   // kogel
+   if (keyIsDown(32))
+   {kogelX = spelerX}
+   if(keyIsDown(32))
+   {kogelY = spelerY}
 
+   kogelY = kogelY - 5;
   // speler
   if (keyIsDown(37)) {
 
@@ -96,21 +97,25 @@ if (vijand1Y > 720)
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-for (var i = 0 ; i < 8; i++ ) {
-  vijand1X = i * 200
+  for (var i=0; i < 8; i++){
+    vijand1X = i * 200; 
+  if (vijand1X - spelerX < 50 && vijand1X - spelerX > -50 && vijand1Y - spelerY < 50 && vijand1Y - spelerY > -50) {
+    console.log("HP")
+    HP = HP - 1}
+  };
 
-  if ( (spelerX-vijand1X) > -50 &&
-( spelerX-vijand1X) < 50 &&
-(spelerY-vijand1Y) > -50 &&
-(spelerY-vijand1Y)< 50 
-) {
-  console.log('HP')
-  HP = HP - 1
-};}
 
+  
+  for (var i=0; i < 8; i++){
+    vijand1X = i * 200;
+  if (kogelX - vijand1X < 50 && kogelX - vijand1X > -50 && kogelY - vijand1Y < 50 && kogelY - vijand1Y > -50) {
+    console.log("botsing")
+    punten = punten + 1}
+  };
+}
   // botsing kogel tegen vijand
- punten= punten + 0.2;
-};
+ 
+ 
 
 
 /**
@@ -127,16 +132,17 @@ var tekenAlles = function () {
   text('POINTS: '  +floor(punten ), 50, 40);
  
   // vijand
-  for(var i =0; i < 8; i++){
-    vijand1X = x[i]*200;
+  for(var i =0; i < vijandXlijst.length; i++){
+
   
   fill("white")
-  ellipse(vijand1X, vijand1Y, 50, 50)
+  ellipse(vijandXlijst[i], vijand1Y, 50, 50)
   }
 
   
   // kogel
-
+fill("black");
+rect(kogelX-10, kogelY-10, 20, 20); 
   // speler
   fill("black");
   ellipse(spelerX, spelerY, 50, 50);
